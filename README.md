@@ -23,6 +23,34 @@ To verify the installation and configuration of Gitleaks:
 3. Gitleaks will automatically scan your changes for potential leaks before allowing the commit to proceed.
 5. If any leaks are detected, Gitleaks will block the commit and display information about the detected leaks.
 
+```
+ $ git add token 
+ $ git commit -m 'test'
+
+    ○
+    │╲
+    │ ○
+    ○ ░
+    ░    gitleaks
+
+Finding:     export TELE_TOKEN="62*****************************************""
+Secret:      62*****************************************
+RuleID:      telegram-bot-api-token
+Entropy:     4.865634
+File:        token
+Line:        1
+Fingerprint: token:telegram-bot-api-token:1
+
+9:17PM INF 1 commits scanned.
+9:17PM INF scan completed in 62.9ms
+9:17PM WRN leaks found: 1
+Warning: gitleaks has detected sensitive information in your changes.
+To disable the gitleaks precommit hook run the following command:
+
+    git config hooks.gitleaks false
+```
+
+
 ### Uninstallation
 To remove the Gitleaks Pre-Commit Hook from your Git repository:
 

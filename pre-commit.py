@@ -14,7 +14,7 @@ def gitleaksEnabled():
 
 
 if gitleaksEnabled():
-    exitCode = os.WEXITSTATUS(os.system('gitleaks detect --source . -v'))
+    exitCode = os.WEXITSTATUS(os.system('gitleaks protect -v --staged && gitleaks detect --source . --redact -v'))
     if exitCode == 1:
         print('''Warning: gitleaks has detected sensitive information in your changes.
 To disable the gitleaks precommit hook run the following command:
